@@ -1,5 +1,3 @@
-package org.example;
-
 import java.lang.annotation.*;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -39,47 +37,47 @@ class CalculatorLogger {
 
 interface Calculator {
     @Loggable
-    int add(int a, int b);
+    double add(double a, double b);
 
     @Loggable
-    int subtract(int a, int b);
+    double subtract(double a, double b);
 
     @Loggable
-    int multiply(int a, int b);
+    double multiply(double a, double b);
 
     @Loggable
-    int divide(int a, int b);
+    double divide(double a, double b);
 }
 
 
 class BasicCalculator implements Calculator {
     @Override
-    public int add(int a, int b) {
-        int result = a + b;
+    public double add(double a, double b) {
+        double result = a + b;
         CalculatorLogger.log("Resultado de adição " + a + " e " + b + " = " + result);
         return result;
     }
 
     @Override
-    public int subtract(int a, int b) {
-        int result = a - b;
+    public double subtract(double a, double b) {
+        double result = a - b;
         CalculatorLogger.log("Resultado de subtração " + a + " e " + b + " = " + result);
         return result;
     }
 
     @Override
-    public int multiply(int a, int b) {
-        int result = a * b;
+    public double multiply(double a, double b) {
+        double result = a * b;
         CalculatorLogger.log("Resultado de Multiplicação " + a + " e " + b + " = " + result);
         return result;
     }
 
     @Override
-    public int divide(int a, int b) {
+    public double divide(double a, double b) {
         if (b == 0) {
             throw new IllegalArgumentException("Não Divide por Zero");
         }
-        int result = a / b;
+        double result = a / b;
         CalculatorLogger.log("Resultado da Divisão " + a + " e " + b + " = " + result);
         return result;
     }
@@ -149,9 +147,9 @@ public class Main {
                 case 3:
                 case 4:
                     System.out.print("Primeiro Numero: ");
-                    int num1 = scanner.nextInt();
+                    double num1 = scanner.nextDouble();
                     System.out.print("Segundo Numero: ");
-                    int num2 = scanner.nextInt();
+                    double num2 = scanner.nextDouble();
                     performOperation(calculator, choice, num1, num2);
                     break;
                 case 5:
@@ -166,8 +164,8 @@ public class Main {
         }
     }
 
-    private static void performOperation(Calculator calculator, int choice, int num1, int num2) {
-        int result = 0;
+    private static void performOperation(Calculator calculator, int choice, double num1, double num2) {
+        double result = 0;
         String operation = switch (choice) {
             case 1 -> {
                 result = calculator.add(num1, num2);
